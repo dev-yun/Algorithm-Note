@@ -1,0 +1,18 @@
+import math
+
+#특정 소수 판별 함수
+def is_prime_number(x):
+  for i in range(2, int(math.sqrt(x)) + 1): # 2~입력값의 제곱근(제곱근이하와 이상은 모두 한쌍)
+    if x % i == 0:    #나머지가 0이면 소수가 아니고 0이 아니면 소수
+      return False
+  return True
+
+# Test input
+print(is_prime_number(5))
+print(is_prime_number(11))
+print(is_prime_number(16))
+
+'''Test output
+True
+True
+False'''
