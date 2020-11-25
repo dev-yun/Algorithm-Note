@@ -1,0 +1,26 @@
+# 한개의 리스트에서 리스트내의 두 구간 사이의 합이 특정값일때 count 추출
+# 리스트가 양수일때 사용가능
+import random
+
+n, m = map(int, input().split())  # 데이터 개수n과 찾고자하는 부분합 m을 공백기준으로 입력받는다.
+
+data = []
+for _ in range(n):
+  data.append(random.randint(1,10))    # n개의 데이터를 1~10사이의 값으로 랜덤리스트 생성
+
+print(data)
+
+count = 0
+interval_sum = 0    #시작점(start)과 끝점(end) 사이의 값의 합
+end = 0     
+
+for start in range(n):
+  while interval_sum < m and end < n:
+    interval_sum += data[end]   # interval_sum에 끝점을 더하면서 한칸씩 앞으로감(조건안에서)
+    end += 1
+
+  if interval_sum == m:
+    count += 1
+  interval_sum -= data[start]        # interval_sum에 시작점을 빼면서 시작점을 한칸씩 앞으로 간다고 표현
+
+print(count)
