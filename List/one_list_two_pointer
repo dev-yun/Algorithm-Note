@@ -24,3 +24,7 @@ for start in range(n):
   interval_sum -= data[start]        # interval_sum에 시작점을 빼면서 시작점을 한칸씩 앞으로 간다고 표현
 
 print(count)
+
+''' input n=5, m=5
+    (random data) data = [1, 4, 2, 3, 5]
+    output = 3 '''
