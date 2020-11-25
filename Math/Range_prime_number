@@ -1,0 +1,20 @@
+import math
+
+n = int(input())      # 소수를 구하고 싶은 범위 지정 (1 ~ n)
+array = [True for i in range(n + 1)]  # 처음엔 범위내 모든 수가 소수(True)인 것으로 초기화(0,1 제외)
+
+def prime_number(n):
+  for i in range(2, int(math.sqrt(n)) + 1): # 2부터 n의 제곱근까지 확인    
+    if array[i] == True:    # i가 True(소수)일 경우
+      j = 2   # i를 제외한 i의 배수를 구해서 지우기
+      while i * j <= n:
+        array[i * j] = False  #배수이므로 소수가 아니라 False
+        j += 1    # 모든 배수를 구하기 위해 i *j < n 까지 j를 1씩 늘림
+  for i in range(2, n + 1):
+    if array[i]:
+      print(i, end=' ')
+
+print(prime_number(n))
+
+''' input = 11
+    output = 2, 3, 5, 7, 11 '''
