@@ -1,0 +1,14 @@
+import requests
+
+target = "http://jsonplaceholder.typicode.com/users"      # json 형식으로 제공된 사이트의 가짜 유저 정보들
+response = requests.get(url=target)
+
+data = response.json()          # respone객체의 데이터가 json형식이므로 python 객체로 변환, json.loads(respone)과는 다름
+print(data)
+
+name_list = []
+for user in data:
+  name_list.append(user["name"])
+
+print(name_list)
+
