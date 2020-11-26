@@ -1,0 +1,19 @@
+import json
+
+user = {        # python의 사전자료형 입력
+  "id" : "Yun",
+  "password" : "192837",
+  "age" : "24",
+  "hobby" : ["movie", "running"]
+}
+
+json_data = json.dumps(user, indent = 4)    # 인코딩 : json.dumps로 JSON객체를 생성(indent => 들여쓰기)
+print(json_data)
+
+data = json.loads(json_data)    # 디코딩 : json.loads로 위에서 생성된 JSON객체를 파이썬 기본 자료형으로 변환
+print(data)
+
+'''with open("user.json", 'w', encoding='utf-8') as file:
+    json.dump(user, file, indent = 4) 
+    파이썬 자료형을 JSON으로 변환할때 파일로 저장하는 방법 (utf-8방식으로 json확장자로 저장)'''
+    
