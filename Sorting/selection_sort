@@ -1,4 +1,8 @@
-array = [4, 5, 3, 6, 7, 8, 2, 1, 9, 0]
+# 직관적이지만 O(n^2)의 시간복잡도를 가져 매우 느리므로 그냥 개념만 알고있기
+
+import random
+
+array = [random.randint(1,10000) for _ in range(10000)]
 
 for i in range(len(array)):
   min_index = i
