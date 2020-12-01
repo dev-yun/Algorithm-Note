@@ -1,0 +1,12 @@
+# 리스트의 데이터가 튜플로 되어있을때 0번째를 기준으로 정렬하려면 그냥 sorted를 사용하면 되지만 1,2,3.. 번째들을 기준으로 정렬하려면 간단한 함수를 선언 후 정렬해야한다. 
+
+array = [('바나나', 2), ('사과', 3), ('키위', 1)]
+
+def setting(data):
+  return data[1]    # 1번째를 기준으로 사용
+
+result1 = sorted(array)
+result2 = sorted(array, key=setting)    # key = setting으로 함수 사용
+
+print(result1)
+print(result2)
