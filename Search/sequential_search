@@ -1,0 +1,6 @@
+# 순차 탐색
+
+def sequential_search(n, target, array):    # n : 문자열개수, target : 찾을값, array : 문자열 리스트
+  for i in range(n):
+    if array[i] == target:    # array[0]부터 순차적으로 target과 같은지 탐색한다.
+      return i + 1      # i는 0부터 이므로 + 1
