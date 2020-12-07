@@ -20,7 +20,7 @@ graph = [[] for i in range(n + 1)]  # 각 노드에 연결되어 있는 노드�
 visited = [False] * (n + 1)   # 방문한 적이 있는지 체크하는 목적의 리스트 만들기
 distance = [INF] * (n + 1)   # 최단 거리 테이블을 모두 무한대로 초기화
 
-for _ in range(m):
+for _ in range(m):           # 노드들 사이의 연결 유무와 간선의 비용 입력
   a, b, c = map(int, input().split())
   graph[a].append((b,c))   # a번 노드에서 b번 노드로 가는비용이 c라는 의미
 
@@ -36,7 +36,7 @@ def get_smallest_node():    # 방문하지 않은 노드 중에서, 가장 최�
 def dijkstra(start):
   distance[start] = 0
   visited[start] = True
-  for j in graph[start]:
+  for j in graph[start]:    # j[0] = 노드, j[1] = 비용 (즉 start와 연결된 노드(distance[노드])의 비용을 업데이트)
     distance[j[0]] = j[1]
   for i in range(n - 1):    # 시작노드를 제외한 n-1개의 노드에 대해 반복
     now = get_smallest_node()   # 현재 최단 거리가 가장 짧은 노드를 꺼내어
