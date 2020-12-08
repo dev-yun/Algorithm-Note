@@ -14,10 +14,15 @@
  # 알고리즘 구형
  
  
- def find_parent(parent, x):     # 특정 원소(같은 루트 노드를 가진)가 속한 집합을 찾기                # 모든 노드를 확인해야해서 비효율적임
+ '''def find_parent(parent, x):     # 특정 원소(같은 루트 노드를 가진)가 속한 집합을 찾기                # 모든 노드를 확인해야해서 비효율적임
   if parent[x] != x:    # 루트 노드가 아니라면 루트 노드를 찾을때 까지 재귀적으로 호출
     return find_parent(parent, parent[x])
-  return x
+  return x'''
+
+def find_parent(parent, x):       # 경로 압축 기법으로 최적화한 find 함수
+  if parent[x] != x:
+    parent[x] = find_parent(parent, parent[x])
+  return parent[x]
 
 def union_parent(parent, a, b):   # 두 원소가 속한 집합을 합치기
   a = find_parent(parent, a)      # a를 루트 노드로
