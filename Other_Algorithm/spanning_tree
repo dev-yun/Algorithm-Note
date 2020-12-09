@@ -1,0 +1,46 @@
+# 산장트리(spanning_tree)란 그래프가 주어졌을때 모든 노드가 연결되어있지만 사이클이 존재하지 않는 부분그래프를 의미한다.
+'''만약 a,b,c가 서로 연결되어있을때 간선의 비용이 a-b < a-c < b-c라면 가장 비용이 높은 b-c를 제거하여 a-b, a-c의 간선만 남기면 사이클도 제거되고
+   최소한의 비용으로 모든 노드들이 연결되어 있는 '최소 신장 트리' 상태를 만들수있다.'''
+
+'''크루스칼 알고리즘은 최소 신장 트리를 만들기 위한 알고리즘으로 그리디 알고리즘으로 분류된다. 알고리즘의 과정을 보면
+   1. 간선 데이터를 비용에 따라 오름차순으로 정렬한다.
+   2. 간선을 하나씩 확인하며 현재의 간선이 사이클을 발생시키는지 확인한다.
+      2.1 사이클이 발생하지 않는 경우 최소 신장 트리에 포함시킨다.
+      2.2 사이클이 발생하는 경우 최소 신장트리에 포함시키지 않는다.
+   3. 모든 간선에 대하여 2번의 과정을 반복한다. '''                    # O(ElogE)의 시간복잡도를 가진다. (E = 간선의 개수)
+   
+   def find_parent(parent, x):     # 같은 집합내에 부모노드가 모두 같은 루트 노드를 갖게 만드는 함수. 
+  if parent[x] != x:
+    parent[x] = find_parent(parent, parent[x])
+  return parent[x]
+
+def union_parent(parent, a, b):   # 두 원소가 속한 집합을 합치기 (합집합)
+  a = find_parent(parent, a)      # a를 루트 노드로
+  b = find_parent(parent, b)      # b를 루트 노드로
+  if a < b:         # 만약 a가 작으면
+    parent[b] = a   # b의 루트 노드를 a로 바꿈
+  else:
+    parent[a] = b   # 반대면 a를 b로
+
+v, e = map(int, input().split())     # 노드의 개수 v, 간선의 수 e
+parent = [0] * (v + 1)               # 부모 테이블 초기화
+
+for i in range(1, v + 1):       # 부모를 자기 자신으로 초기화
+  parent[i] = i
+
+edges = []      # 모든 간선을 담을 리스트
+result = 0      # 최종 추출된 간선들의 합이 계산될 변수
+
+for _ in range(e):        # 노드들과 간선의 비용을 입력받고 
+  a, b, cost = map(int, input().split())
+  edges.append((cost, a, b))    # edges에 서로 연결된 노드와 간선을 담음 (간선의 비용을 정렬할것이기 때문에 cost, a, b 순으로 담는다.)
+
+edges.sort()
+
+for edge in edges:
+  cost, a, b = edge
+  if find_parent(parent, a) != find_parent(parent, b):      # a와 b의 루트 노드가 같지 않을때 (같으면 벌써 서로 이어져 있는것임)
+    union_parent(parent, a, b)      # 합집합 실행
+    result += cost
+
+print(result)
