@@ -6,4 +6,21 @@
     1. 탐색 시작 노드를 스택에 삽입하고 방문 처리를 한다.
     2. 스택의 최상단 노드에 방문하지 않은 인접 노드가 있으면 그 인접 노드를 스택에 넣고 방문 처리를 한다. 
     방문하지 않은 인접 노드가 없으면 스택에서 최상단 노드를 꺼낸다.
-    3. 2번위 과정을 더 이상 수행할 수 없을 때까지 반복한다.'''ㄷㅇ
+    3. 2번위 과정을 더 이상 수행할 수 없을 때까지 반복한다.'''
+
+
+def dfs(graph, v, visited):
+    visited[v] = True       # 현재 노드 방문 처리
+    print(v, end=' ')
+    for i in graph[v]:      # 현재 노드와 연결된 다른 노드를 재귀적으로 방문 (graph[v]에 v와 연결된 노드들의 정보가 들어있음)
+        if not visited[i]:  # 만약 i가 방문이 True가 아니라면 (방문하지 않았다면)
+            dfs(graph, i, visited)  # dfs로 graph[v]의 i 노드 dfs처리 (계속 깊어짐)
+
+n = int(input())      # 노드의 개수
+graph = [[] * (n + 1)]
+
+for _ in range(1, n+1):
+  array = list(map(int, input().split()))
+  graph.append(array)
+
+visited = [False] * (n + 1)     #[0]은 사용 x
