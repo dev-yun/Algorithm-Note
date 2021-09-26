@@ -1,0 +1,16 @@
+# 프로그래머스 타겟 넘버
+
+def solution(numbers, target):
+    answer = 0
+    q = [(0, 0)]
+    length = len(numbers)
+
+    while q:          # 큐가 빌때까지
+        n = q.pop()
+        if n[0] < length:       # n[0] < length 일 동안 
+            q.append((n[0] + 1, n[1] + numbers[n[0] - 1]))        # number을 하나씩 올리며  n[1] + - numbers[n[0] -1] 을 수행
+            q.append((n[0] + 1, n[1] - numbers[n[0] - 1]))
+        elif n[1] == target:    # length = n[0]일때 (주어진 리스트의 모든 수를 계산했을때) n[1] == target 이면 answer += 1  
+            answer += 1
+
+    return answer

@@ -1,0 +1,33 @@
+# 가장 큰 수
+
+import itertools
+
+def solution(numbers):
+    result = []
+    answer = []
+    
+    for i in numbers:
+        result.append(str(i))       # int형으로 받은 수를 str로 형변환 후 result리스트에 추가
+    
+    for x in itertools.permutations(result, len(result)):     # permutations(조합)으로 result 리스트 조합
+        answer.append(int((''.join(x))))          # 다시 int형으로 변환 뒤 answer에 append
+    
+    answer = str(max(answer))         # 변환값 다시 str로 형변환
+    return answer
+    
+    # 테스트는 통과하는데 결과는 자꾸 실패해서 곰곰히 생각해보니 [23,4,5,643,63,236,7,1] 이런 리스트를 int로 병합할 경우 매우 큰 수가 나와서 코드실행에 실패하는것이다.
+    
+
+# 수정
+
+def solution(numbers):
+    answer = ''
+    
+    numbers = list(map(str, numbers))           # int형 리스트인 numbers를 str형으로 변환 (범위를 조절하기 위해)
+    sorted(numbers, key = lambda x : x*3, reverse = True)  # 주워진 number의 범위가 1000 이하 이므로 각 원소에 *3을 하여 범위를 맞춘뒤 오름차순 정렬후(x[0]의 아스키코드로) reverse.
+                                                           # ('3'과 '30'을 그냥 lambda x:x로 쓰면 '3','30' 으로 정렬되는데 (reverse)뒤 봤을때 '30', '3' 이되어 330보다 작은 303이므로 오답이다 이를 해결하기 위해서)
+                                                           # lambda x:x*3 을 사용하여 '333', '303030' 으로 변경뒤 비교하면 두번째 아스키에서 333이 더 크므로 '30','3'으로 올바르게 정렬된다.
+    
+    answer = str(int(''.join(numbers)))
+
+    return answer

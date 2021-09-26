@@ -1,0 +1,13 @@
+# 체육복
+
+def solution(n, lost, reserve):
+    set_reserve = set(reserve) - set(lost)    # 중복을 허용하지 않는 set자료형으로 차집합을 구함
+    set_lost = set(lost) - set(reserve)       # reserve와 lost가 혹여나 겹치는 부분이 있을것을 대비해 전처리
+    
+    for i in set_reserve:
+        if i - 1 in set_lost:     # 왼쪽부터 확인하는것이 가장 효율적 (그리드)
+            set_lost.remove(i-1)
+        elif i + 1 in set_lost:
+            set_lost.remove(i+1)
+    
+    return n-len(set_lost)

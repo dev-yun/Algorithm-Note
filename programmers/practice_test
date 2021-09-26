@@ -1,0 +1,63 @@
+# 프로그래머스 모의고사
+
+def solution(answers):
+    answer = []
+    count_1 = 0
+    count_2 = 0
+    count_3 = 0
+    
+    ans_1 = [1,2,3,4,5]
+    ans_2 = [2,1,2,3,2,4,2,5]
+    ans_3 = [3,3,1,1,2,2,4,4,5,5]
+    
+    ans_1 = ans_1 * (10000//len(ans_1))           # 굳이 이렇게 주어진 범위까지 ans의 범위를 넓힐 필요가 없는데 메모리만 낭비했다.
+    ans_2 = ans_2 * (10000//len(ans_2))           
+    ans_3 = ans_3 * (10000//len(ans_3))
+    
+    for i in range(len(answers)):
+        if ans_1[i] == answers[i]:                # 이 부분에서 ans_1[i % len(ans_1)]로 표현하면 주어진 범위 내에 나오는 값을 모두 처리할 수 있다.
+            count_1 += 1
+    
+    for i in range(len(answers)):
+        if ans_2[i] == answers[i]:
+            count_2 += 1
+    
+    for i in range(len(answers)):
+        if ans_3[i] == answers[i]:
+            count_3 += 1
+    
+    result = [count_1, count_2, count_3]
+    
+    for person, score in enumerate(result):
+        if score == max(result):
+            answer.append(person+1)
+    
+    return answer
+    
+# 수정한 풀이
+
+def solution(answers):
+    answer = []
+    count = [0, 0, 0]
+    
+    ans_1 = [1,2,3,4,5]
+    ans_2 = [2,1,2,3,2,4,2,5]
+    ans_3 = [3,3,1,1,2,2,4,4,5,5]
+    
+    for i in range(len(answers)):
+        if ans_1[i % len(ans_1)] == answers[i]:
+            count[0] += 1
+    
+    for i in range(len(answers)):
+        if ans_2[i % len(ans_2)] == answers[i]:
+            count[1] += 1
+    
+    for i in range(len(answers)):
+        if ans_3[i % len(ans_3)] == answers[i]:
+            count[2] += 1
+    
+    for person, score in enumerate(count):
+        if score == max(count):
+            answer.append(person+1)
+    
+    return answer
