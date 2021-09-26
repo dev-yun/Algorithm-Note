@@ -1,0 +1,30 @@
+# 책 P.149 음료수 얼려먹기
+
+import random
+
+n,m = map(int, input().split())
+
+data = [[random.randint(0,1) for col in range(m)] for row in range(n)]    # n,m 크기의 행렬에 랜덤으로 0과 1만을 원소로 추가
+
+for i in range(n):
+  print(data[i])          # 만들어진 data행렬을 보기 편하게 정리
+
+def dfs(x, y):      # 문제를 풀기위한 깊이 우선 탐색 방식의 함수 작성
+  if x <= -1 or x >= n or y <= -1 or y >= m:      # 만약 x,y값이 주워진 범위 밖이면 False
+    return False
+  if data[x][y] == 0:     # 만약 x,y값이 0(구멍)이면 1로 바꾼후, dfs를 재귀함수로 호출 후 상하좌우 값을 다시 확인하고 0일 경우 True 반환(이렇게 구멍의 한 덩어리(0이 붙어있는만큼)을 파악가능
+    data[x][y] = 1
+    dfs(x - 1, y)
+    dfs(x + 1, y)
+    dfs(x, y - 1)
+    dfs(x, y + 1)
+    return True
+  else: return False    # 만약 x,y값이 0이 아니면 (!이면) False 반환
+
+result = 0
+for i in range(n):
+  for j in range(m):
+    if dfs(i, j) == True:   # (0,0)부터 (n,m)까지 dfs(i,j)가 True인지 확인후 맞으면 result +1
+      result += 1
+
+print(result)

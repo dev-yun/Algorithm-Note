@@ -1,0 +1,16 @@
+# 정수 N을 입력하고 00시 00분 00초부터 N시 59분 59초까지의 시간 중 3이 하나라도 포함되는 시간의 개수를 구하라는 문제
+
+n = int(input())
+
+count = 0
+
+for h in range(n+1):
+  for m in range(60):
+    for s in range(60):
+      if '3' in str(h) + str(m) + str(s):  # hhmmss 형태로 만들기 위해서 str 형태로 바꿈(안바꾸면 숫자 서로 더해짐) 
+        count += 1
+
+print(count)
+
+'''input = 5
+   output = 11475 '''

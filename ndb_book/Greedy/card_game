@@ -1,0 +1,21 @@
+# (N * M) 형태의 행렬로 놓여있는 숫자 카드에서 각 행의 카드들 중 최솟값을 갖는 카드를 각각 뽑아 그 중 가장 큰 수를 찾는 문제이다.
+
+import random
+
+n, m = map(int, input().split())
+card = [[random.randint(1,10) for col in range(m)] for row in range(n)]       # n행 m열이고 각 원소가 1~10사이의 랜덤값을 가지는 행렬객체 생성
+print(card)
+
+min_value = []
+
+for i in range(n):
+  min_value.append(min(card[i]))              # 각 n행까지 각 행마다 최소값을 min_value에 리스트형식으로 저장
+
+result = max(min_value)         # 최소값이 모여있는 min_value에서 최대값 max출력
+print(min_value)
+print(result)
+
+''' input = 5 6
+    card = [[1, 2, 3, 8, 6, 8], [10, 7, 5, 10, 9, 8], [10, 9, 7, 7, 2, 3], [1, 6, 10, 6, 6, 2], [10, 3, 2, 1, 1, 2]]
+    min_value = [1, 5, 2, 1, 1]
+    output = 5 '''

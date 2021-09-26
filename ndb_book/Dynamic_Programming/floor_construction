@@ -1,0 +1,14 @@
+# P.223 바닥공사
+
+n = int(input())
+div = 796796
+
+d = [0] * 1001    # 1 < n < 1000 이므로
+
+d[1] = 1
+d[2] = 3
+
+for i in range(3, n + 1):   # bottom up 방식의 dynamic programming
+  d[i] = (d[i - 1] + d[i - 2] * 2) % div    # 점화식 ai = a(i-1) + a(i-2) * 2
+
+print(d[n])

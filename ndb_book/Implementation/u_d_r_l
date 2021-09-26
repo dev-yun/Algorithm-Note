@@ -1,0 +1,27 @@
+# n*n크기의 좌표평면에서 원하는 이동값 좌우상하['L','R','U','D']를 입력받고 초기위치 (1,1)에서 이동한 최종 위치의 좌표를 구하는 문제
+
+n = int(input())
+data = input().split()
+x,y = 1,1       # 시작위치 (1,1)
+
+step_types = ['L','R','U','D']    # 좌표평면에서는 행이 증가한다는 것은 y값이 늘어난다는 것이고 x값을 늘리기 위해선 열을 증가시켜야한다.(행은 위아래, 열은 좌우) 
+                                  #그런데 ((x,y)의 x가 늘어나는것은 행이 증가하는것이므로 x축을 증가시키기 위해선 열을 움직여야한다)
+dx = [0, 0, -1, 1]        # 열  (만약 R한번 움직이면 (1,2)가 되고 열이 증가한다.)
+dy = [-1, 1, 0, 0]        # 행
+
+for plan in data:
+  for i in range(len(step_types)):      # step의 원소를 하나씩 점검하면서
+    if plan == step_types[i]:   # 입력 데이터와 step_types이 같으면 x,y좌표 업데이트
+      nx = x + dx[i]
+      ny = y + dy[i]
+
+  if nx < 1 or nx > n or ny < 1 or ny > n: # 크기가 n*n 밖으로 나가면 무시
+    continue
+
+  x, y = nx, ny
+
+print(x,y)
+
+'''input = 5
+   data = R R U D D R D L L U
+   output = 3 2 '''

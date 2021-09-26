@@ -1,0 +1,15 @@
+# 볼링공 고르기
+
+import itertools
+
+n, m = map(int, input().split())
+k = list(map(int, input().split()))
+
+count = 0
+
+for x in itertools.combinations(k, 2):      # 조합 메소드사용
+  if x[0] == x[1]:
+    continue
+  count += 1
+
+print(count)

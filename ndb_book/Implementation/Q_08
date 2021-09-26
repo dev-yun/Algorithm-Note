@@ -1,0 +1,15 @@
+# 문자열 재정렬
+
+s = input()
+array = []
+sum = 0
+
+for i in s:
+  if i.isalpha():       # isalpha ==> 해당 문자열의 값이 문자인지 판단하는 함수 (맞으면 True, 틀리면 False반환) 자매품으로 isdigit도 있음
+    array.append(i)     # 문자라면 i를 append
+  elif i.isdigit(): sum += int(i)  # 숫자라면 int형으로 변환후 더함.
+
+array.sort()
+array.append(str(sum))
+
+print(''.join(array))

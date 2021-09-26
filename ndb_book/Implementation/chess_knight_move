@@ -1,0 +1,21 @@
+# 8*8 크기의 체스판에서 임의로 주어진 위치( ex)f4 )에서 나이트가 이동할 수 있는 위치의 수를 구하는 문제
+
+place = input()
+row = int(place[1])
+col = ord(place[0]) - ord('a') + 1    # ord() - 유니코드를 정수형으로 바꿈 (a = 97)
+
+steps = [(1,2),(1,-2),(-1,2),(-1,-2),(2,1),(2,-1),(-2,1),(-2,-1)]   #나이트가 움직일수있는 규칙 적용
+
+result = 0
+
+for step in steps:
+  new_row = row + step[1]   # step[1] = 행
+  new_col = col + step[0]   # step[0] = 열
+
+  if new_row >= 1 and new_row <= 8 and new_col >= 1 and new_col <= 8:   #체스판 크기안에 있을때 (and를 사용해 모두 만족할때만 카운트한다)
+    result += 1
+
+print(result)
+
+'''input = a7
+   output = 3 '''

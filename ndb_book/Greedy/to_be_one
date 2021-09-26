@@ -1,0 +1,29 @@
+# 입력값 N이 K로 나누어 떨어지면 K로 나누고, K로 나누어 떨어지지 않으면 1을 빼면서 카운트를 한다. N이 1이 될때 카운트값이 가장 작아지는 코드를 작성하라
+
+n, k = map(int, input().split())
+
+count = 0
+
+while n >= k:             # N > 1로 작성하면 1 < N < K 일때 else구문에서 문제가 발생함
+  remainder = n % k       # 나머지를 구현해놓는다.
+  if remainder == 0:      # 만약 나머지가 0이면
+    n = n // k            # 나눈다
+    count += 1
+  else: 
+    n -= remainder        # 나머지가 0이 아니면 나머지만큼 N에서 뺀다 (그럼 다음번에 N이 K의 배수가 됨)
+    count += remainder    # 뺀 나머지만큼 카운트를 올린다 (1씩 빼는것이므로)
+
+for i in range(n-1):      # 1 < K < N 일때 N에 1씩 빼며 카운트를 올린다.
+  n -= 1
+  count += 1
+  
+'''remainder = n % k
+
+n -= (remainder-1)
+count += (remainder-1)''' # 이렇게도 가능함
+
+print(count)
+
+
+'''input = 37 7
+   output = 7'''

@@ -1,0 +1,32 @@
+# P. 332 치킨 배달
+
+
+from itertools import combinations
+
+n, m = map(int, input().split())
+chicken, house = [], []
+
+for r in range(n):
+    data = list(map(int, input().split()))  # r을 행으로
+    for c in range(n):
+        if data[c] == 1:        # c를 열로
+            house.append((r,c)) # data[c] == 1이면 일반 집
+        elif data[c] == 2:
+            chicken.append((r,c)) # data[c] == 2이면 치킨 집으로 저장
+
+candidates = list(combinations(chicken, m))      # 조합으로 치킨집과 최소 치킨집의 조합을 구한다.
+
+def get_sum(candidate):
+    result = 0
+    for hx, hy in house:
+        temp = 1e9
+        for cx, cy in candidate:
+            temp = min(temp, abs(hx - cx) + abs(hy - cy))       # 치킨집과 일반집사이의 거리 |hx-cx|+|hy-cy|를 구해서 min으로 최소값을 구함
+        result += temp      # 각 일반집에 대한 치킨집과의 최소 거리들의 합
+    return result
+
+result = 1e9
+for candidate in candidates:
+    result = min(result, get_sum(candidate))  # 여러 조합들 중 가작 작은값을 도출
+
+print(result)

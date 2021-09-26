@@ -1,0 +1,17 @@
+# n개의 원소 중 m개를 뽑아 더하는 값 중 최대값 찾기. (단 뽑히는 숫자는 연속으로 k번을 초과하여 더할수 없다.)
+
+
+n, m, k = map(int, input().split())         
+data = list(map(int, input().split()))
+
+data = sorted(data)
+
+bundle = (data[-1] * k) + (data[-2])      # 가장큰수를 k번, 두번째로 큰수를 한번 더한값을 묶는다.
+
+bundle_sum = ((m // (k+1)) * bundle) + (m % (k+1)) * data[-1] # (m // k+1)로 n개의 데이터에서 몇 묶음이 나오는지 확인하고 구한 bundle을 곱한 뒤, 나머지 개수에 가장큰수를 곱한다. 
+
+print(bundle_sum)
+
+'''input = 6 9 4
+    data = 2 5 9 4 8 7
+    output = 79 '''

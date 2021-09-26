@@ -1,0 +1,28 @@
+# 2020 카카오 신입공채, 문자열압축문제
+# https://programmers.co.kr/learn/courses/30/lessons/60057
+
+def solution(s):
+  answer = len(s)   # 마지막 min 비교를 위해 len(s) 대입
+    
+  for step in range(1, len(s)//2 +1):   # 전체 길이 len(s)에서 반복되는 구간을 찾기위해선 1/2(len(s)) 까지만 확인하면됨
+    compressed = ''     # 압축된 문자열을 담기위한 빈string 선언
+    prev = s[0 : step]  # 1 ~ 1/2(len(s)) 까지 비교하기위한 대상 생성
+    count = 1   # aaa면 3a라고 표기하기 위한 count생성 
+    for j in range(step, len(s), step):   # prev를 제외한 모든 문자열에 비교하기 위해 step부터 len(s)까지 step의 크기만큼 건너뛰며 반복
+      if prev == s[j : j + step]:   # 만약 step과 다음 step크기의 문자열이 같으면 count += 1
+          count += 1
+      else:
+        compressed += str(count) + prev if count >= 2 else prev   # 만약 다르다면 지금까지 count된 숫자 + prev를 compressed에 입력 (count가 2이상일때 위를 실행하고 만약 1이면 그냥 prev만 compressed에 입력)
+        prev = s[j : j+step]  # prev를 다음 step으로 업데이트
+        count = 1     # count 초기화
+        
+    compressed += str(count) + prev if count >= 2 else prev   # 만약 aabbededed일때 3ed는 9행 if문을 실행하고 끝나므로 compessed에 담아주기 위해 실행.
+        
+    answer = min(answer, len(compressed))  # step = 1 부터 step = len(s) // 2 까지 반복을 돌며 비교하며 구간내 최소값 입력
+    
+  return answer
+
+s = 'aabbccdddddd'
+
+print(len(s))
+print(solution(s))

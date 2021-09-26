@@ -1,0 +1,26 @@
+# 입력받은 M,N 두 수 사이의 모든 소수를 찾아 출력해야하는 문제 (M이상 N이하)
+
+import math
+
+m, n = map(int, input().split())
+
+data = [True for i in range(100000)]     # 충분히 큰 범위 지정
+
+
+for i in range(2, int(math.sqrt(n)) + 1):  # 여기가 핵심. (m, sqrt(n))가 아니라 어떤상황에서도 (2,sqrt(n)) (여기서 헤맴..)
+  if data[i] == True:       # 여기도 True 빼고 if data[i]: 로 작성해도 됨
+    j = 2                   # 2부터 3,4,5... i*j < n일때까지 구한후 False처리 (곱할수있으면 나눌수도 있으므로 소수가 아님)
+    while (i*j) <= n:
+      data[i*j] = False
+      j += 1
+
+for i in range(m, n + 1):
+  if data[i]:               # if True: 일때의 i값 print (if 뒤에 조건없이 써있으면 True일때 값을 묻는것임)
+    print(i)      # if data[i] == False: 면 범위내의 소수가 아닌값만 추출
+    
+'''input = 3 16
+   output = 3
+            5
+            7
+            11
+            13'''

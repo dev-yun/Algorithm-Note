@@ -1,0 +1,33 @@
+# 카카오 2019년 그리디 문제, https://programmers.co.kr/learn/courses/30/lessons/42891#
+# 100점 중 10점을 받은 잘못된 풀이
+
+def solution(food_times, k):
+  answer = 0
+  min_food_times = min(food_times)
+
+  if k > sum(food_times):   # k가 전체 음식먹는 시간을 합친것보다 크면 모두 0이 되므로 -1출력
+    return -1
+  
+
+  for i in range(k):
+    i = i % len(food_times)   # 먹어야할 음식 ex)[1,2,3]을 계속 돌기위해 길이로 나눠줌. (0,1,2,3,4,5..) -> (0,1,2,0,1,2..)
+
+    if (min_food_times * len(food_times)) >= k:   # 만약 k초가 가장빠르게 먹을수 있는 음식 * 전체 음식 길이? 보다 작으면 출력(0이 되는 음식이 없음)
+      food_times[i] -= 1
+      answer = i + 2          # 다음번에 먹을 음식을 구하는것이므로 +1, i는 0부터 시작하므로 +1 ==> +2
+      if answer > len(food_times):    # +2를 할경우 (0,1,2) ==> (2,3,4) 가 되므로 4에 len(food_times)를 빼서 1이 되게만듬
+        answer -= len(food_times)
+    elif (min_food_times * len(food_times)) < k:  # 음식이 0이 될때 제거하고 출력하는부분에서 머리가 안돌아가 실패함 다시 풀어볼것!
+      if food_times[i] != 0:
+        food_times[i] -= 1
+        answer = i + 2
+        if answer > len(food_times):
+          answer -= len(food_times)
+      else: i + 1  
+      
+  return answer
+
+food_times = [3, 4, 1]
+k = 5
+
+print(solution(food_times, k))

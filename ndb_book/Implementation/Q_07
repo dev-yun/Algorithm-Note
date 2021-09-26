@@ -1,0 +1,17 @@
+# 럭키 스트레이트
+
+n = int(input())
+
+array = [int(i) for i in str(n)]      # 입력받은 정수를 문자열로 바꾼뒤, 정수형 리스트로 변환
+
+mid = int(len(array)/2)     # 리스트 중앙을 나누기위해 중앙값 저장
+
+print(array[0:mid])
+print(array[mid:len(array)])
+
+front = array[0:mid]
+end = array[mid:len(array)]
+
+if sum(front) == sum(end):    # 나뉜 앞과 뒤가 같으면 LUCKY, 다르면 READY 출력
+  print("LUCKY")
+else: print("READY")

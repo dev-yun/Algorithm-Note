@@ -1,0 +1,49 @@
+n, m = map(int, input().split())
+
+d = [[0] * m for _ in range(n)]     # 이동한 위치를 저장하기 위한 map을 생성하여 0으로 초기화 (n*m크기의 2차원 리스트)
+x, y, direction = map(int, input().split())
+d[x][y] = 1
+
+array = []
+for _ in range(n):
+  array.append(list(map(int,input().split())))      # n행의 2차원 리스트 생성
+# [북, 동, 남, 서] (열이동이 x축 방향이므로))
+dx = [-1, 0, 1, 0]
+dy = [0, 1, 0, -1]
+
+def turn_left():    # 첫번째 규칙인 현재위치에서 왼쪽방향부터 탐색시작을 구현한 메소드
+  global direction
+  direction -= 1
+  if direction == -1:   # 북(0)에서 1을 뺐을때 -1이되면 서(3)로 변환
+    direction = 3
+
+count = 1  # 시작때 1칸밟고 시작
+turn_time = 0
+
+while True:
+  turn_left()       # 첫번째 규칙 실행
+  nx = x + dx[direction]
+  ny = y + dy[direction]
+
+  if d[nx][ny] == 0 and array[nx][ny] == 0:   # 이동할칸(nx,ny)이 가보지 않았거나(0) 육지(0)이면 이동
+    d[nx][nx] = 1       # 0이였던(방문하지 않았던)칸 1로 업데이트
+    x = nx    # x, y였던 위치 nx,ny 로 업데이트
+    y = ny
+    count += 1    # 카운트 올림
+    turn_time = 0
+    continue
+  else:                 # 회전한 후 이동할칸(nx,ny)이 가봤던칸(1)이거나 바다(1)이면 두번째 규칙 실행
+    turn_time += 1      # 4방향중 한방향을 봤다는의미 (4가되면 모든방향을 본것)
+  if turn_time == 4:    # 4방향 모두 갈 수 없는 경우 세번째 규칙 실행 (뒤로 한칸)
+    nx = x - dx[direction]
+    ny = y - dy[direction]
+    if array[nx][ny] == 0:    # 만약 보고있는 방향의 뒤에가 0이면 뒤로한칸가고 (x,y) 업데이트
+        x = nx
+        y = ny
+    else:   # 뒤에가 바다(1)일경우 멈춤
+        break
+        turn_time = 0 # turn_time 초기화
+
+print(count)
+
+# 바다라서 1인것과 갔던곳이라 1로 표기하는것에 오류가 있어보임 가봤던곳은 2라던지 바꿔표현해야할듯 한번 더 손봐야할 코드

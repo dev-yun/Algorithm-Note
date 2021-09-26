@@ -1,0 +1,18 @@
+# 모험가 길드 문제
+
+import random
+
+n = int(input())
+adventurer = [random.randint(1,n) for _ in range(10)]
+
+group = 0
+result = 0
+adventurer.sort()   # 모험가 리스트 정렬(작은수부터 공포도를 짜는게 가장 많이 그룹을 짜는 방법임)
+
+for i in adventurer:
+  group += 1          # 모험가 리스트를 반복하며 group + 1을 한다
+  if group == i:      # 만약 group과 i(adventurer)이 같다면 (공포도 = 그룹인원)
+    result += 1       # 결과를 +1 하고 그룹을 초기화
+    group = 0
+
+print(result)

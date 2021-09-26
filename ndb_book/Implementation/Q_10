@@ -1,0 +1,51 @@
+# 자물쇠와 열쇠
+# 프로그래머스에 입력해서 실행해야한다. https://programmers.co.kr/learn/courses/30/lessons/60059
+
+def rotate_a_matrix_by_90_degree(a):    # 주어진 2차원 행렬을 시계방향으로 90도 회전시키는 함수
+  n = len(a)      # 행길이 계산
+  m = len(a[0])   # 열길이 계산
+  result = [[0] * n for _ in range(m)]  # 결과 리스트 초기화
+  for i in range(n):
+    for j in range(m):
+      result[j][n - i - 1] = a[i][j]    # 90도 회전  a(0,0) => result(0,n-1), a(0,n-1) => result(n-1,n-1), a(n-1, n-1) => result(n-1, 0), a(n-1, 0) => result(0,0) 
+  return result
+
+def check_result(new_lock):
+  lock_len = len(new_lock) // 3       # 3배의 크기로 늘린 자물쇠크기를 원래 크기로 만듬
+  for i in range(lock_len, lock_len * 2):   # 진짜 자물쇠의 정보가 담긴 부분
+    for j in range(lock_len, lock_len * 2):
+      if new_lock[i][j] != 1:         # 1이 아니면(채워져있지 않으면 False 반환)
+        return False
+  return True  
+
+def solution(key, lock):
+  n = len(lock)
+  m = len(key)
+  new_lock = [[0] * (n * 3) for _ in range(n * 3)]    # 기존(n)의 3배 크기로 자물쇠의 크기를 늘림 (모든 원소 0으로 초기화)
+  
+  for i in range(n):    # 0으로 초기화된 new_lock의 중앙에 기존 lock의 정보를 담음
+    for j in range(n):
+      new_lock[i + n][j + n] = lock[i][j]
+  for rotation in range(4):   # 4가지 방향에 대해서 확인
+    key = rotate_a_matrix_by_90_degree(key)   # 열쇠 회전
+    for x in range(n * 2):
+      for y in range(n * 2):
+        for i in range(m):
+          for j in range(m):
+            new_lock[x + i][y + j] += key[i][j]
+      
+        if check_result(new_lock) == True:
+          return True
+      
+        for i in range(m):
+          for j in range(m):
+            new_lock[x + i][y + j] -= key[i][j]
+  return False
+  
+  
+# 문제 검증
+
+key = [[0,0,0], [1,0,0],[0,1,1]]
+lock = [[1,1,1],[1,1,0],[1,0,1]]
+
+print(solution(key,lock))  

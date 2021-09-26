@@ -1,0 +1,19 @@
+# 만들 수 없는 금액
+
+n = int(input())
+data = map(int, input().split())
+
+array = []
+for i in data:
+  array.append(i)
+
+array.sort()
+target = 1
+
+for i in array:
+  if target < i:    # 오름차순으로 정렬된 리스트에서 작은값부터 더할시 더해진 값보다 작은범위내에서 모든정수를 만들수있다는 아이디어가 필요하다.
+                    # [1, 2, 3, 5] 는 (1 은 1), (1, 2 는 3), (1, 2, 3 은 6), (1, 2, 3, 5 는 11) 아래의 모든 수를 만들 수 있다.
+    break
+  target += i
+
+print(target)

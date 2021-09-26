@@ -1,0 +1,39 @@
+# P.303 커리큘럼
+
+
+from collections import deque
+import copy
+
+v = int(input())          # 강의의 개수
+indegree = [0] * (v + 1)  # 모든 강의의 진입차수를 0으로 초기화
+graph = [[] for i in range(v + 1)]    # 모든 강의에 연결된 간선의 정보를 담기 위한 리스트 초기화
+time = [0] * (v + 1)    # 각 강의의 시간을 0으로 초기화
+
+for i in range(1, v + 1):
+  data = list(map(int, input().split()))  # 강의 시간과 연결된강의, 마지막에 -1을 넣는다.
+  time[i] = data[0]     # data[0]은 강의 시간정보
+  for x in data[1 : -1]:  # data의 선수강의가 없으면 [강의시간, -1] 2개의 원소를 포함 data[1:-1] = []이고, 선수강의가 있으면 [강의시간, 선수강의, -1] 3개의 원소를 포함 data[1:-1] = [선수강의]이다.
+    indegree[i] += 1    # 선수강의가 있을때 진입차수를 1 증가시킨다.
+    graph[x].append(i)  # graph의 선수강의 위치에 입력된 순서 i 를 입력한다.
+
+def topology_sort():
+  result = copy.deepcopy(time)    #result의 객체가 변경되어도 time의 리스트에 변화가 생기지 않도록 deepcopy로 result의 주소를 재할당 해준다.
+  q = deque()
+
+  for i in range(1, v + 1):
+    if indegree[i] == 0:      # 만약 진입차수가 0이라면 (선수강의가 없으므로 가장 처음에 들어간다.)
+      q.append(i)   # q에 대입
+
+  while q:    # q가 빌때까지
+    now = q.popleft()
+    for i in graph[now]:    # graph[now]에는 현재 강의를 선수과목으로 받는 과목들의 리스트가 들어있다.
+      result[i] = max(result[i], result[now] + time[i])   # i의 강의시간과, i강의시간 + 선수강의시간 을 비교해 큰 값으로 업데이트한다.
+      indegree[i] -= 1    # now강의가 처리되었으니 간선을 지운다.
+      if indegree[i] == 0:  # 간선이 0이 되면 i를 새로운 q로 업데이트 한다
+        q.append(i)
+
+  for i in range(1, v + 1):
+    print(result[i])    # result == 현재 강의 + 선수강의 시간들
+
+topology_sort()
+

@@ -1,0 +1,17 @@
+# 돈을 받으면 거스름돈 500, 100, 50, 10원으로 돌려주는데 이때 거슬러주는 동전의 수는 최소가 되어야한다.
+
+n = int(input())    # 거스름돈
+
+count = 0
+coin_type = [500, 100, 50, 10]
+
+for coin in coin_type:
+  count += n // coin      # 거스름돈 / coin(500부터 10) 의 몫을 카운트로 더하고 
+  n %= coin               # 나머지를 다음 반복으로 넘긴다.
+
+print(count)
+
+
+
+'''input = 1560
+   output = 5'''

@@ -1,0 +1,23 @@
+# 두 배열 a,b에서 b>a인 값을 교체하여 합이 최대가 되는 a배열을 만드는것이다. (단, k번 교체가능)
+
+import random
+
+n, k = map(int, input().split())
+
+a = [random.randint(1,10) for _ in range(n)]
+b = [random.randint(1,10) for _ in range(n)]
+
+a = sorted(a)
+b = sorted(b, reverse = True)
+
+for i in range(k):
+  if a[i] < b[i]:
+    a[i], b[i] = b[i], a[i]
+  else:
+    break
+
+print(a)
+print(b, '\n')
+
+result = sum(a)
+print(result)
