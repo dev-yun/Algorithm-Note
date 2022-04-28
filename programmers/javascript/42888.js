@@ -1,29 +1,22 @@
-var answer = [];
-var record = [
-  'Enter uid1234 Muzi',
-  'Enter uid4567 Prodo',
-  'Leave uid1234',
-  'Enter uid1234 Prodo',
-  'Change uid4567 Ryan',
-];
-var recordArr = [];
-record.forEach((e) => {
-  recordObj = {};
-  const arr = e.split(' ');
-  for (let i = 0; i < arr.length; i++) {
-    recordObj[i] = arr[i];
-  }
-  recordArr.push({ ...recordObj });
-});
+function solution(record) {
+  var userIdLog = [];
+  var answer = [];
+  const userIdName = {};
 
-recordArr.forEach((e) => {
-  if (e[0] === 'Enter') {
-    answer.push(`${e[2]}님이 들어왔습니다.`);
-  } else if (e[0] === 'Leave') {
-    answer.push(`${e[2]}님이 나갔습니다.`);
-  } else {
-    answer;
-  }
-});
+  record.forEach(e => {
+      const [state, userId, name] = e.split(" ");
+      
+      if(state === "Enter"){
+          userIdLog.push([userId, "님이 들어왔습니다."]);
+      }
+      if(state === "Leave"){
+          userIdLog.push([userId, "님이 나갔습니다."]);
+          return;
+      }
+      userIdName[userId] = name;
+  })
 
-console.log(answer);
+
+  userIdLog.map((e) => answer.push(userIdName[e[0]] + e[1]))
+  return answer
+}
