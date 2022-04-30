@@ -1,7 +1,6 @@
 function solution(progresses, speeds) {
   var answer = [0];
   const endProgress = [];
-  let cnt = 1;
 
   progresses.forEach((e, idx) => {
       for(let i = 1; i <= 100; i++){
