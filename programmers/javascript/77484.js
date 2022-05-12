@@ -14,3 +14,23 @@ function solution(lottos, win_nums) {
   
   return answer;
 }
+
+
+// 2차 풀이
+
+let minSameCnt = 0;
+let maxSameCnt = 0;
+
+lottos.forEach(e => {
+  if(win_nums.includes(e)){
+    minSameCnt++;
+  };
+  if(win_nums.includes(e) || e===0){
+    maxSameCnt++;
+  }
+})
+
+
+
+topRank = (7 - maxSameCnt === 7) ? 6 : 7-maxSameCnt; 
+lowRank = (7 - minSameCnt === 7) ? 6 : 7-minSameCnt;
