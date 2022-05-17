@@ -2,8 +2,8 @@
 // ㅎㅏㄴㄱㅡㄹㅇㅣ ㅇㅏㄴㅆㅓㅈㅣㅁ
 
 // 1. just my answer(not use pointer)
-// 1) can use Set to remove same values
-// 2) can use Object and count Keys
+//    1)can use Set to remove same values
+//    2)can use Object and count Keys
 const countUniqueValues = (arr) => {
   let answer = 0;
 
@@ -23,19 +23,17 @@ const countUniqueValues = (arr) => {
 };
 
 // 2. using 2 Pointer that compare 2 values in array
-// first Pointer !== second Pointer
-// moving second Pointer to next index
+//    first Pointer !== second Pointer
+//    moving second Pointer to next index
 const countUniqueValuesUsingPointer = (arr) => {
   let i = 0;
 
   if (arr.length === 0) return 0;
 
-  for (let j = 1; j <= arr.length; j++) {
+  for (let j = 1; j < arr.length; j++) {
     if (arr[i] !== arr[j]) {
       i++;
       arr[i] = arr[j];
-    } else {
-      j++;
     }
   }
 
