@@ -1,6 +1,6 @@
 // accepts an array and number n
 
-// 1. ㅂㅣㅎㅛㅇㅠㄹㅈㅓㄱ
+// 1. ㅂㅣㅎㅛㅇㅠㄹㅈㅓㄱ (O(N^2))
 //   ㅁㅐㅂㅓㄴ ㅅㅐㄹㅗㅇㅜㄴ ㅂㅐㅇㅕㄹ tempㄹㅡㄹ ㅁㅏㄴㄷㅡㄹㅇㅓㅇㅑㅎㅏㄴㄷㅏ.
 const maxSubbarraySum = (arr, n) => {
   if (arr.length < n) return null;
@@ -16,7 +16,7 @@ const maxSubbarraySum = (arr, n) => {
   return max;
 };
 
-// 2. ㅎㅛㅇㅠㄹㅈㅓㄱ
+// 2. ㅎㅛㅇㅠㄹㅈㅓㄱ (O(N))
 //   tempㅇㅕㄱㅎㅏㄹㅇㅡㄹ ㅎㅏㄴㅡㄴ tempSumㅇㅡㄹ ㅁㅏㄴㄷㅡㄹㄱㅗ
 //   ㅇㅣㅈㅓㄴ ㅇㅛㅅㅜㄹㅡㄹ ㅃㅐㄱㅗ ㄷㅏㅇㅡㅁ ㅇㅛㅅㅗㄹㅡㄹ ㄷㅓㅎㅏㄴㅡㄴ ㅅㅣㄱㅇㅡ
 //   ㅅㅣㄱㅇㅡㄹㅗ ㅈㅣㄴㅎㅐㅇㅎㅏㄴㄷㅏ.
