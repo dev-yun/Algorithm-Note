@@ -27,10 +27,11 @@ const countUniqueValues = (arr) => {
 // moving second Pointer to next index
 const countUniqueValuesUsingPointer = (arr) => {
   let i = 0;
-  let answer = [];
+
+  if (arr.length === 0) return 0;
+
   for (let j = 1; j <= arr.length; j++) {
     if (arr[i] !== arr[j]) {
-      answer.push(arr[i]);
       i++;
       arr[i] = arr[j];
     } else {
@@ -38,5 +39,5 @@ const countUniqueValuesUsingPointer = (arr) => {
     }
   }
 
-  return answer;
+  return i + 1;
 };
