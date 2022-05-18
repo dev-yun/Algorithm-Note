@@ -1,7 +1,7 @@
 // accepts an array and number n
 
-// 1. ㅂㅣㅎㅛㅇㅠㄹㅈㅓㄱ (O(N^2))
-//   ㅁㅐㅂㅓㄴ ㅅㅐㄹㅗㅇㅜㄴ ㅂㅐㅇㅕㄹ tempㄹㅡㄹ ㅁㅏㄴㄷㅡㄹㅇㅓㅇㅑㅎㅏㄴㄷㅏ.
+// 1. 비효율적 (O(N^2))
+//   매번 새로운 배열 temp를 만들어야 함.
 const maxSubbarraySum = (arr, n) => {
   if (arr.length < n) return null;
 
@@ -16,10 +16,9 @@ const maxSubbarraySum = (arr, n) => {
   return max;
 };
 
-// 2. ㅎㅛㅇㅠㄹㅈㅓㄱ (O(N))
-//   tempㅇㅕㄱㅎㅏㄹㅇㅡㄹ ㅎㅏㄴㅡㄴ tempSumㅇㅡㄹ ㅁㅏㄴㄷㅡㄹㄱㅗ
-//   ㅇㅣㅈㅓㄴ ㅇㅛㅅㅜㄹㅡㄹ ㅃㅐㄱㅗ ㄷㅏㅇㅡㅁ ㅇㅛㅅㅗㄹㅡㄹ ㄷㅓㅎㅏㄴㅡㄴ ㅅㅣㄱㅇㅡ
-//   ㅅㅣㄱㅇㅡㄹㅗ ㅈㅣㄴㅎㅐㅇㅎㅏㄴㄷㅏ.
+// 2. 효율적 (O(N))
+//   temp역할을 하는 tempSum을 만들고
+//   이전 element를 빼고 다음 element를 더하는 식으로 진행
 const maxSubbarraySumUsingSlide = (arr, n) => {
   let maxSum = 0;
   let tempSum = 0;
