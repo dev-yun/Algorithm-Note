@@ -11,3 +11,16 @@ function naiveStringSearch(mainArr, subArr) {
   }
   return count;
 }
+
+// 다른 풀이
+
+function naiveSearch(mainArr, subArr) {
+  let count = 0;
+  for (let i = 0; i < mainArr.length; i++) {
+    for (let j = 0; j < subArr.length; j++) {
+      if (subArr[j] !== mainArr[i + j]) break;
+      if (j === subArr.length - 1) count++;
+    }
+  }
+  return count;
+}
