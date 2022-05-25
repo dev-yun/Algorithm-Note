@@ -8,10 +8,9 @@ const swap = (arr, idx1, idx2) => {
 };
 
 const selectionSort = (arr) => {
-  let min = Infinity;
   // 첫번째 요소부터 기준으로 잡기
   for (let i = 0; i < arr.length - 1; i++) {
-    min = arr[i];
+    let min = arr[i];
     for (let j = i; j < arr.length; j++) {
       if (min > arr[j]) {
         min = arr[j];
