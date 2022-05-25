@@ -32,14 +32,15 @@ const bubbleSort = (arr) => {
 const bubbleSortOptimize = (arr) => {
   let isSwap;
   for (let i = 0; i < arr.length; i++) {
-    isSwap = true;
+    isSwap = false;
     for (let j = 0; j < arr.length - i - 1; j++) {
+      console.log(arr, arr[j], arr[j + 1], isSwap);
       if (arr[j] > arr[j + 1]) {
         swap(arr, j, j + 1);
-        isSwap = false;
+        isSwap = true;
       }
     }
-    if (isSwap) break;
+    if (!isSwap) break;
   }
   return arr;
 };
