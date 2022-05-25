@@ -25,3 +25,21 @@ const bubbleSort = (arr) => {
   }
   return arr;
 };
+
+// 최적화 아이디어 : 정렬하는중 swap되는 부분이 없으면 정렬이 끝난것으로 간주하고 코드를 중단한다.
+// 위에서 정의한 버블 정렬은 배열이 정렬되었어도 for문을 끝까지 도는 문제점이 있음
+
+const bubbleSortOptimize = (arr) => {
+  let isSwap;
+  for (let i = 0; i < arr.length; i++) {
+    isSwap = true;
+    for (let j = 0; j < arr.length - i - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
+        swap(arr, j, j + 1);
+        isSwap = false;
+      }
+    }
+    if (isSwap) break;
+  }
+  return arr;
+};
