@@ -10,13 +10,13 @@ const swap = (arr, idx1, idx2) => {
 const selectionSort = (arr) => {
   // 첫번째 요소부터 기준으로 잡기
   for (let i = 0; i < arr.length - 1; i++) {
-    let min = arr[i];
-    for (let j = i; j < arr.length; j++) {
-      if (min > arr[j]) {
-        min = arr[j];
-        swap(arr, i, j);
+    let minIndex = i;
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[minIndex] > arr[j]) {
+        minIndex = j;
       }
     }
+    swap(arr, i, minIndex);
   }
   return arr;
 };
