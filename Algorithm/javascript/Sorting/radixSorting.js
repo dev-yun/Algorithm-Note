@@ -12,17 +12,15 @@ const getDigit = (num, place) => {
 
 // step 2. 기수정렬 구현
 const radixSort = (arr) => {
-  let bucket = Array.from(Array(10), () => Array().fill(null));
   // 입력된 배열 중 가장 큰 자리수 추출
   const maxDigitLength = Math.max(...arr).toString().length;
   // maxDigitLength번 getDigit함수 실행
   for (let digit = 0; digit < maxDigitLength; digit++) {
+    let bucket = Array.from(Array(10), () => Array().fill(null));
     arr.forEach((e) => {
       bucket[getDigit(e, digit)].push(e);
     });
     arr = bucket.flatMap((num) => num);
-    console.log(arr);
-    bucket = Array.from(Array(10), () => Array().fill(null));
   }
 
   return arr;
