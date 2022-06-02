@@ -32,7 +32,7 @@ for(let i = 0; i <= operationArr.length; i++){
     i = -1;
     result = 0;
     continue;
-  }else if(!operationArr.includes(oper1) && !operationArr.includes(oper2) && operationArr[i] === oper3 && oper3 !== undefined){
+  }else if(!operationArr.includes(oper2) && operationArr[i] === oper3 && oper3 !== undefined){
     result = eval(numArr[i] +  oper3 + numArr[i+1]);
     numArr.splice(i,2,result);
     operationArr.splice(i,1);
