@@ -19,3 +19,24 @@ var maximumUniqueSubarray = function (nums) {
   answer = Math.max(...sumSubArray);
   return answer;
 };
+
+// sliding Window를 사용하여 시간복잡도 문제 해결
+// Int8Array 타입 배열은 2의 보수 8비트 부호있는 정수의 배열을 나타냅니다.
+var maximumUniqueSubarray = function (nums) {
+  const doublePrice = new Int8Array(10001);
+  let total = 0;
+  let best = 0;
+
+  for (let left = 0, right = 0; right < nums.length; right++) {
+    doublePrice[nums[right]] += 1;
+    total += nums[right];
+    while (doublePrice[nums[right]] > 1) {
+      doublePrice[nums[left]] -= 1;
+      total -= nums[left];
+      left++;
+    }
+    best = Math.max(total, best);
+  }
+
+  return best;
+};
