@@ -1,3 +1,5 @@
+// 주어진 배열에서 subArr이 최대가 되게 만들고 만들어진 subArr의 합을 구하는 문제
+
 // 시간 복잡도 문제로 탈락
 // forEach, reduce, splice => O(n^2)
 var maximumUniqueSubarray = function (nums) {
