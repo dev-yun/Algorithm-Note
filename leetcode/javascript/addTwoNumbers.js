@@ -20,7 +20,7 @@ var addTwoNumbers = function (l1, l2) {
   let answer = new ListNode();
   let node1 = l1;
   let node2 = l2;
-  let currunt = answer;
+  let current = answer;
   let carry = false;
 
   let val = node1.val + node2.val;
@@ -28,13 +28,13 @@ var addTwoNumbers = function (l1, l2) {
     val = val % 10;
     carry = true;
   }
-  currunt.val = val;
+  current.val = val;
 
   while (node1.next || node2.next) {
     node1 = node1.next || new ListNode();
     node2 = node2.next || new ListNode();
-    currunt.next = new ListNode();
-    currunt = currunt.next;
+    current.next = new ListNode();
+    current = current.next;
     val = node1.val + node2.val;
     if (carry) {
       val++;
@@ -44,10 +44,10 @@ var addTwoNumbers = function (l1, l2) {
       val = val % 10;
       carry = true;
     }
-    currunt.val = val;
+    current.val = val;
   }
   if (carry) {
-    currunt.next = new ListNode(1);
+    current.next = new ListNode(1);
   }
   return answer;
 };
