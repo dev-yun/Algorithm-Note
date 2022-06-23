@@ -4,7 +4,6 @@ const solution = (n, k) => {
   const arr = n.toString(k).split('0');
 
   for (let i = 0; i < arr.length; i++) {
-    //if(arr[i] === "") continue;
     if (isPrime(Number(arr[i]))) primeCnt++;
   }
   return primeCnt;
