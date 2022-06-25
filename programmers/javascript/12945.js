@@ -1,3 +1,5 @@
+// dp 방법
+
 function solution(n) {
   let dp = Array.from({ length: n }, () => []);
 
@@ -8,4 +10,17 @@ function solution(n) {
   }
 
   return dp[n];
+}
+
+// 재귀 방법
+
+function solution(n) {
+  const fibo = (num) => {
+    if (num === 1) return 1;
+    else if (num === 0) return 0;
+    let result = (fibo(num - 1) + fibo(num - 2)) % 1234567;
+    return result;
+  };
+
+  return fibo(n);
 }
