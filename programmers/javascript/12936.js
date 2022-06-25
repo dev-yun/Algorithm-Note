@@ -1,8 +1,3 @@
-// 조합을 모두 구해서 k번째를 구할 수 있지만
-// 조합의 규칙을 통해 k번째를 구할 수 있을듯 하다.
-
-// n명이 있다면 0번 인덱스는 n * (n-1)! 값이 채워질것이고
-
 function solution(n, k) {
   const base = Array.from({ length: n }, (_, i) => i + 1);
   var answer = [];
