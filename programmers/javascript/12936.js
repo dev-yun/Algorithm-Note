@@ -6,9 +6,7 @@ function solution(n, k) {
   while (true) {
     n--;
     if (k === 0) {
-      base.forEach((num) => {
-        if (!answer.includes(num)) answer.push(num);
-      });
+      answer.push(...base);
       break;
     }
     const index = Math.floor(k / factorial(n));
