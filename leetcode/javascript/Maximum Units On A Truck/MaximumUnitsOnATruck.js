@@ -1,3 +1,7 @@
+// boxTypes에는 [박스 갯수, 박스당 담을 수 있는 물건의 수]가 들어있고
+// truckSize에는 최대 실을 수 있는 박스의 갯수가 주어진다.
+// 이때 트럭에 담을 수 있는 최대 물건의 수를 구하라.
+
 /**
  * @param {number[][]} boxTypes
  * @param {number} truckSize
