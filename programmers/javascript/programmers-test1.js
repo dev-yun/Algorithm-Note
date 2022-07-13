@@ -4,7 +4,6 @@
 
 function solution(X, Y) {
   var answer = '';
-  const commonNums = [];
   let xIndex = 0;
   let yIndex = 0;
   const xArr = X.toString()
