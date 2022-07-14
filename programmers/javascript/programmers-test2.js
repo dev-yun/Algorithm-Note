@@ -52,3 +52,51 @@ const allItemSale = (obj) => {
   let result = Object.values(obj).filter((e) => e !== 0);
   return result.length === 0 ? true : false;
 };
+
+// 정리한 코드
+
+function solution(want, number, discount) {
+  var answer = 0;
+  let prev = 0;
+  let next = 0;
+  const shoppingObj = {};
+
+  want.forEach((e, idx) => (shoppingObj[e] = number[idx]));
+
+  while (next < discount.length) {
+    let addItem = discount[next];
+    let delItem = discount[prev];
+
+    if (next - prev < 10) {
+      next = setAddItem(shoppingObj, addItem, next);
+    } else {
+      next = setAddItem(shoppingObj, addItem, next);
+      prev = setDelItem(shoppingObj, delItem, prev);
+    }
+
+    if (isAllItemSale(shoppingObj)) answer += 1;
+  }
+
+  return answer;
+}
+
+const setAddItem = (shoppingObj, item, index) => {
+  if (Object.keys(shoppingObj).includes(item)) {
+    shoppingObj[item] -= 1;
+  }
+  index += 1;
+  return index;
+};
+
+const setDelItem = (shoppingObj, item, index) => {
+  if (Object.keys(shoppingObj).includes(item)) {
+    shoppingObj[item] += 1;
+  }
+  index += 1;
+  return index;
+};
+
+const isAllItemSale = (obj) => {
+  let result = Object.values(obj).filter((e) => e !== 0);
+  return result.length === 0 ? true : false;
+};
